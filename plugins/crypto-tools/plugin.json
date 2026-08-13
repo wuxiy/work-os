@@ -1,0 +1,16 @@
+{
+  "pluginName": "Crypto Tools",
+  "version": "0.1.0",
+  "description": "Hash, Base64, URL, AES and JWT helpers.",
+  "author": "Work-OS",
+  "logo": "logo.png",
+  "main": "index.html",
+  "features": [
+    {
+      "code": "crypto",
+      "explain": "Hash / encode / decode / encrypt",
+      "cmds": ["加密", "解密", "crypto", "md5", "base64", "jwt", "sha256", "aes", "url编码"]
+    }
+  ],
+  "pluginSetting": { "height": 480 }
+}

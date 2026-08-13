@@ -1,0 +1,18 @@
+node_modules
+out
+dist
+release
+.DS_Store
+*.log
+.env
+.env.*
+!.env.example
+vite.config.ts.timestamp*
+# TypeScript incremental build cache
+*.tsbuildinfo
+# marketplace/ is a build output (zips + registry.json) — regenerate with: pnpm build:marketplace
+marketplace
+# smoke-test scratch dirs
+.sfeed
+.smoke-update-feed
+.smoke-marketplace-tmp

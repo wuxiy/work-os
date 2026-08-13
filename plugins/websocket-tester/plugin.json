@@ -1,0 +1,16 @@
+{
+  "pluginName": "WebSocket Tester",
+  "version": "0.1.0",
+  "description": "Connect to a WebSocket endpoint and inspect messages.",
+  "author": "Work-OS",
+  "logo": "logo.png",
+  "main": "index.html",
+  "features": [
+    {
+      "code": "ws-test",
+      "explain": "Test a WebSocket connection",
+      "cmds": ["websocket", "ws", "websocket测试"]
+    }
+  ],
+  "pluginSetting": { "height": 480 }
+}

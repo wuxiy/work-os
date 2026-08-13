@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Let the OS material (vibrancy / acrylic) show through the launcher. */
+:root {
+  color-scheme: light dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: transparent;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI Variable', 'Segoe UI', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  /* native-feel skill ref 06: no text selection or pointer cursor on chrome. */
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: default;
+  overflow: hidden;
+}
+
+/* Opt content areas back in to selection. */
+.selectable,
+.selectable * {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+/* Skill ref 03 §C.4: no smooth-scroll polyfills. */
+html {
+  scroll-behavior: auto;
+}
+
+/* Skill ref 03 §C.3: overlay scrollbars, fading. */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.35);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+input,
+textarea {
+  user-select: text;
+  -webkit-user-select: text;
+  caret-color: currentColor;
+}
+
+/* Skill ref 03 §C.1: native controls never use a pointer cursor. */
+button {
+  cursor: default;
+}

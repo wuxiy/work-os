@@ -1,0 +1,69 @@
+appId: com.workos.desktop
+productName: Work-OS
+directories:
+  output: release
+  buildResources: build
+asar: true
+
+# Emit latest.yml / latest-mac.yml so an update feed can be hosted. The runtime
+# feed URL (configured in Settings → Updates, via autoUpdater.setFeedURL)
+# overrides this default.
+publish:
+  provider: generic
+  url: https://example.com/work-os-updates
+
+# Notarize the mac app when Apple credentials are present (no-op otherwise).
+afterSign: scripts/notarize.cjs
+
+# Only the app bundle ships in the asar; plugins travel as extraResources
+# (outside the asar) so they load via process.resourcesPath/plugins.
+files:
+  - out/main/**
+  - out/preload/**
+  - out/renderer/**
+  - package.json
+
+extraResources:
+  - from: out/plugins
+    to: plugins
+    filter:
+      - '**/*'
+
+mac:
+  category: public.app-category.developer-tools
+  # Intel (x64) + Apple Silicon (arm64) in one go — satisfies the mac requirement.
+  # To build a single arch for a quick verification, pass an override, e.g.
+  # temporarily trim each arch list to just `- x64`, or build with:
+  #   electron-builder --mac (after editing), then restore both arches here.
+  target:
+    - target: dmg
+      arch:
+        - x64
+        - arm64
+    - target: zip
+      arch:
+        - x64
+        - arm64
+  icon: build/icon.png
+  hardenedRuntime: true
+  entitlements: build/entitlements.mac.plist
+  entitlementsInherit: build/entitlements.mac.plist
+  gatekeeperAssess: false
+  # identity omitted on purpose: electron-builder signs when CSC_LINK /
+  # CSC_KEY_PASSWORD env vars are present, and builds unsigned otherwise (local
+  # dev). Add a Developer ID cert + those env vars to produce signed builds.
+
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+    - target: portable
+      arch:
+        - x64
+  icon: build/icon.png
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
