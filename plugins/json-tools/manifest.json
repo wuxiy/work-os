@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "dev.workos.tool.json-tools",
+  "name": "JSON 工具",
+  "version": "0.1.0",
+  "type": "ui",
+  "apiVersion": "1",
+  "entry": "dist/index.html",
+  "description": "JSON 格式化 / 校验 / 压缩 / 转义 / JSONPath / Diff / YAML / TypeScript",
+  "permissions": ["clipboard.write"],
+  "commands": [
+    { "id": "json.format", "title": "JSON 格式化", "keywords": ["json", "format", "格式化", "美化"], "code": "json.format" },
+    { "id": "json.minify", "title": "JSON 压缩（Minify）", "keywords": ["json", "minify", "压缩"], "code": "json.minify" },
+    { "id": "json.validate", "title": "JSON 校验", "keywords": ["json", "validate", "校验", "验证"], "code": "json.validate" },
+    { "id": "json.escape", "title": "JSON 转义 / 反转义", "keywords": ["json", "escape", "转义"], "code": "json.escape" },
+    { "id": "json.path", "title": "JSONPath 查询", "keywords": ["json", "jsonpath", "查询", "path"], "code": "json.path" },
+    { "id": "json.diff", "title": "JSON Diff 对比", "keywords": ["json", "diff", "对比", "差异"], "code": "json.diff" },
+    { "id": "json.yaml", "title": "JSON ⇄ YAML 互转", "keywords": ["json", "yaml", "互转"], "code": "json.yaml" },
+    { "id": "json.toTypescript", "title": "JSON → TypeScript 类型", "keywords": ["json", "typescript", "类型", "ts"], "code": "json.toTypescript" }
+  ]
+}

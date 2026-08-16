@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "dev.workos.tool.api-client",
+  "name": "API Client",
+  "version": "0.1.0",
+  "type": "ui",
+  "apiVersion": "1",
+  "entry": "dist/index.html",
+  "description": "API 调试工具：Collection 管理 / 环境变量 / 请求构建（Query/Path/Headers/Cookies/Body/Auth）/ 响应检查 / cURL 导入导出",
+  "permissions": ["network.request", "storage.read", "storage.write", "clipboard.write"],
+  "commands": [
+    { "id": "http.new", "title": "新建 HTTP 请求", "keywords": ["http", "request", "api", "新建", "请求"], "code": "http.new" },
+    { "id": "http.open", "title": "打开 API Client", "keywords": ["http", "api", "client", "调试"], "code": "http.open" }
+  ]
+}

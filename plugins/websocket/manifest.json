@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "dev.workos.tool.websocket",
+  "name": "WebSocket",
+  "version": "0.1.0",
+  "type": "ui",
+  "apiVersion": "1",
+  "entry": "dist/index.html",
+  "description": "WebSocket 调试工具：连接 / 收发消息 / 自动重连 / 会话记录",
+  "permissions": ["network.request", "storage.read", "storage.write"],
+  "commands": [
+    { "id": "websocket.connect", "title": "连接 WebSocket", "keywords": ["websocket", "ws", "connect", "连接", "调试"], "code": "websocket.connect" },
+    { "id": "websocket.open", "title": "打开 WebSocket 调试", "keywords": ["websocket", "ws", "open", "调试"], "code": "websocket.open" }
+  ]
+}

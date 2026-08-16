@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "dev.workos.tool.developer-essentials",
+  "name": "开发者小工具",
+  "version": "0.1.0",
+  "type": "ui",
+  "apiVersion": "1",
+  "entry": "dist/index.html",
+  "description": "UUID / 时间戳 / 正则 / URL 解析 / 文本 Diff / Cron 等高频开发者小工具",
+  "permissions": ["clipboard.write"],
+  "commands": [
+    { "id": "essentials.uuid", "title": "UUID 生成", "keywords": ["uuid", "guid", "生成", "随机"], "code": "essentials.uuid" },
+    { "id": "essentials.timestamp", "title": "时间戳转换", "keywords": ["timestamp", "unix", "时间", "转换", "毫秒"], "code": "essentials.timestamp" },
+    { "id": "essentials.regex", "title": "正则测试", "keywords": ["regex", "regexp", "正则", "匹配", "高亮"], "code": "essentials.regex" },
+    { "id": "essentials.url", "title": "URL 解析", "keywords": ["url", "解析", "查询参数", "query"], "code": "essentials.url" },
+    { "id": "essentials.diff", "title": "文本 Diff 对比", "keywords": ["diff", "对比", "差异", "文本"], "code": "essentials.diff" },
+    { "id": "essentials.cron", "title": "Cron 表达式解析", "keywords": ["cron", "crontab", "定时", "计划任务"], "code": "essentials.cron" },
+    { "id": "essentials.open", "title": "打开开发者小工具", "keywords": ["developer", "essentials", "工具", "开发"], "code": "essentials.open" }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "dev.workos.tool.crypto-tools",
+  "name": "加密 / 编码",
+  "version": "0.1.0",
+  "type": "ui",
+  "apiVersion": "1",
+  "entry": "dist/index.html",
+  "description": "MD5 / SHA 哈希、Base64 / URL / Hex / Unicode 编码、HMAC、AES、RSA、JWT 解析",
+  "permissions": ["clipboard.write"],
+  "commands": [
+    { "id": "crypto.md5", "title": "MD5 哈希", "keywords": ["md5", "hash", "哈希", "摘要"], "code": "crypto.md5" },
+    { "id": "crypto.sha256", "title": "SHA 哈希（SHA-1 / 256 / 512）", "keywords": ["sha", "sha1", "sha256", "sha512", "哈希"], "code": "crypto.sha256" },
+    { "id": "crypto.base64", "title": "Base64 / Hex / Unicode 编码解码", "keywords": ["base64", "url", "hex", "unicode", "编码", "解码"], "code": "crypto.base64" },
+    { "id": "crypto.jwt", "title": "JWT 解析（header / payload / 过期）", "keywords": ["jwt", "token", "解析", "过期"], "code": "crypto.jwt" },
+    { "id": "crypto.aes", "title": "AES 加密 / 解密", "keywords": ["aes", "gcm", "pbkdf2", "加密", "解密"], "code": "crypto.aes" },
+    { "id": "crypto.open", "title": "打开加密 / 编码工具", "keywords": ["crypto", "加密", "编码", "hash", "工具"], "code": "crypto.open" }
+  ]
+}
