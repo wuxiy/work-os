@@ -1,0 +1,19 @@
+[package]
+name = "workos-network"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+workos-storage = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+tokio = { workspace = true }
+reqwest = { workspace = true }
+tokio-tungstenite = { workspace = true }
+futures-util = { workspace = true }
+base64 = "0.22"
+thiserror = { workspace = true }
+tracing = { workspace = true }
+parking_lot = { workspace = true }
+uuid = { version = "1", features = ["v4"] }

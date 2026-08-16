@@ -1,0 +1,9 @@
+[package]
+name = "workos-native"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+security-framework = { workspace = true }
+thiserror = { workspace = true }
