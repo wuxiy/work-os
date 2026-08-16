@@ -1,0 +1,68 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Work-OS",
+  "version": "0.1.0",
+  "identifier": "dev.workos.desktop",
+  "build": {
+    "beforeDevCommand": "pnpm dev:front",
+    "devUrl": "http://localhost:5173",
+    "beforeBuildCommand": "pnpm build:front",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "workbench",
+        "title": "Work-OS",
+        "width": 1280,
+        "height": 800,
+        "minWidth": 980,
+        "minHeight": 640,
+        "visible": true,
+        "center": true
+      },
+      {
+        "label": "launcher",
+        "title": "Work-OS Launcher",
+        "url": "launcher.html",
+        "width": 720,
+        "height": 540,
+        "decorations": false,
+        "alwaysOnTop": true,
+        "visible": false,
+        "skipTaskbar": true,
+        "resizable": false,
+        "shadow": true
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": [
+      "app",
+      "dmg"
+    ],
+    "createUpdaterArtifacts": true,
+    "resources": {
+      "plugins/*.workos-plugin": "plugins/"
+    },
+    "icon": [
+      "icons/icon.icns",
+      "icons/32x32.png"
+    ],
+    "macOS": {
+      "minimumSystemVersion": "10.15"
+    }
+  },
+  "plugins": {
+    "updater": {
+      "active": true,
+      "dialog": false,
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDc3OTc3QzAwMTRFNjNFMUQKUldRZFB1WVVBSHlYZDdLODI4VE1jOWlkenJmVy8xaENabG9iQnVKVFdWYTZJZUJ3UUEvdVJTK2IK",
+      "dangerousInsecureTransportProtocol": true
+    }
+  }
+}

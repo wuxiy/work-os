@@ -1,0 +1,6 @@
+@import '@work-os/ui/src/styles.css';
+@source '../node_modules/@work-os/ui/src';
+
+#root {
+  height: 100%;
+}

@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "types": ["vite/client"],
+    "paths": {
+      "@work-os/ui": ["../../packages/ui/src/index.ts"],
+      "@work-os/command": ["../../packages/command/src/index.ts"],
+      "@work-os/shared": ["../../packages/shared/src/index.ts"],
+      "@work-os/plugin-types": ["../../packages/plugin-types/src/index.ts"]
+    }
+  },
+  "include": ["src", "vite.config.ts"]
+}

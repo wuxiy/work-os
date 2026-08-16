@@ -1,0 +1,7 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "plugin-surface",
+  "description": "插件 WebView 仅获得事件监听能力；一切系统能力必须经 plugin_bridge（Rust 侧校验插件身份与权限）",
+  "webviews": ["plugin:*"],
+  "permissions": ["core:event:allow-listen", "core:event:allow-unlisten"]
+}
