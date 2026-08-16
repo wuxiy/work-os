@@ -1,0 +1,91 @@
+/*
+ * Work-OS 设计令牌（产品架构 §15：Native / Minimal / Precise / Calm）
+ * 亮暗双主题：暗色为默认基调（与 ui/ 设计稿一致），通过 .dark 类切换。
+ */
+@import 'tailwindcss';
+
+@theme {
+  --color-app-bg: var(--bg);
+  --color-app-panel: var(--panel);
+  --color-app-panel2: var(--panel2);
+  --color-app-border: var(--border);
+  --color-app-fg: var(--fg);
+  --color-app-fg-dim: var(--fg-dim);
+  --color-app-accent: var(--accent);
+  --color-app-accent-fg: var(--accent-fg);
+  --color-app-danger: var(--danger);
+  --color-app-success: var(--success);
+  --color-app-warn: var(--warn);
+  --radius-app: 6px;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'PingFang SC', 'Helvetica Neue', sans-serif;
+  --font-mono: 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+}
+
+:root {
+  --bg: #f6f6f7;
+  --panel: #ffffff;
+  --panel2: #efeff1;
+  --border: #e2e2e5;
+  --fg: #1d1d1f;
+  --fg-dim: #6e6e73;
+  --accent: #2f6fed;
+  --accent-fg: #ffffff;
+  --danger: #d33d3d;
+  --success: #2f9e63;
+  --warn: #c2841a;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #161618;
+  --panel: #1e1e21;
+  --panel2: #26262a;
+  --border: #333338;
+  --fg: #e8e8ea;
+  --fg-dim: #9a9aa2;
+  --accent: #4d84f0;
+  --accent-fg: #ffffff;
+  --danger: #e55b5b;
+  --success: #4cba82;
+  --warn: #d9a441;
+  color-scheme: dark;
+}
+
+html,
+body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
+}
+
+* {
+  border-color: var(--border);
+}
+
+/* Native Feel：无网页感（不允选择文本的界面区域另加 .no-select） */
+body {
+  user-select: none;
+  cursor: default;
+}
+input,
+textarea,
+[data-selectable],
+.prose {
+  user-select: text;
+  cursor: text;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
