@@ -1,59 +1,33 @@
 {
   "name": "work-os",
+  "private": true,
   "version": "0.1.0",
-  "description": "Work-OS — a cross-platform developer workbench with a u-tools-style plugin system.",
-  "main": "./out/main/index.js",
-  "author": "wuxi",
-  "license": "MIT",
-  "type": "module",
-  "scripts": {
-    "dev": "concurrently -k -n plugins,app -c magenta,cyan \"pnpm dev:plugins\" \"electron-vite dev\"",
-    "dev:plugins": "tsx watch scripts/build-plugins.ts",
-    "build": "electron-vite build && tsx scripts/build-plugins.ts",
-    "build:plugins": "tsx scripts/build-plugins.ts",
-    "build:marketplace": "pnpm build:plugins && node scripts/build-marketplace.mjs",
-    "keygen": "node scripts/keygen.mjs",
-    "sign:registry": "tsx scripts/sign-registry.ts",
-    "smoke:marketplace": "pnpm build:marketplace && node scripts/smoke-marketplace.mjs",
-    "smoke:sign": "tsx scripts/smoke-sign.ts",
-    "smoke:update": "pnpm package:dir && node scripts/smoke-update.mjs",
-    "preview": "electron-vite preview",
-    "typecheck:node": "tsc -p tsconfig.node.json --noEmit",
-    "typecheck:web": "tsc -p tsconfig.web.json --noEmit",
-    "typecheck": "pnpm typecheck:node && pnpm typecheck:web",
-    "smoke": "pnpm exec electron scripts/smoke-runner.cjs",
-    "smoke:marketplace": "pnpm build:marketplace && node scripts/smoke-marketplace.mjs",
-    "package:mac": "pnpm build && electron-builder --mac",
-    "package:win": "pnpm build && electron-builder --win",
-    "package:dir": "pnpm build && electron-builder --dir"
+  "description": "本地优先、插件驱动的跨平台开发者工作台",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "better-sqlite3"
+    ]
   },
-  "dependencies": {
-    "adm-zip": "^0.5.16",
-    "crypto-js": "^4.2.0",
-    "electron-store": "^10.0.1",
-    "electron-updater": "^6.3.0",
-    "zod": "^3.23.8"
+  "scripts": {
+    "dev": "pnpm --filter @work-os/desktop dev",
+    "build": "pnpm -r --filter './plugins/*' build && pnpm build:plugin-packages && pnpm --filter @work-os/desktop build:tauri",
+    "build:universal": "pnpm -r --filter './plugins/*' build && pnpm build:plugin-packages && pnpm --filter @work-os/desktop build:tauri:universal",
+    "build:plugin-packages": "node scripts/pack-plugins.mjs",
+    "typecheck": "tsc -b tsconfig.json",
+    "test": "vitest run --root .",
+    "lint": "eslint .",
+    "verify": "pnpm lint && pnpm typecheck && pnpm test && cargo check --workspace && cargo clippy --workspace -- -D warnings && cargo test --workspace",
+    "manual:repo": "echo 'run scripts inside ../work-os-manual-linux'"
   },
   "devDependencies": {
-    "@types/adm-zip": "^0.5.7",
-    "@types/crypto-js": "^4.2.2",
-    "@electron/notarize": "^2.5.0",
-    "@types/node": "^20.14.0",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react": "^4.3.1",
-    "autoprefixer": "^10.4.19",
-    "concurrently": "^9.0.1",
-    "electron": "^31.3.1",
-    "electron-builder": "^24.13.3",
-    "electron-vite": "^2.3.0",
-    "postcss": "^8.4.40",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "tailwindcss": "^3.4.7",
-    "tsx": "^4.16.2",
-    "typescript": "^5.5.4",
-    "vite": "^5.3.5",
-    "zustand": "^4.5.4"
+    "@eslint/js": "^9.17.0",
+    "@types/node": "^22.10.0",
+    "eslint": "^9.17.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "fflate": "^0.8.2",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.0",
+    "vitest": "^3.0.0"
   }
 }

@@ -1,0 +1,49 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/core",
+    "crates/permission",
+    "crates/storage",
+    "crates/network",
+    "crates/plugin-runtime",
+    "crates/manual",
+    "crates/native",
+    "apps/desktop/src-tauri",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+
+[workspace.dependencies]
+workos-core = { path = "crates/core" }
+workos-permission = { path = "crates/permission" }
+workos-storage = { path = "crates/storage" }
+workos-network = { path = "crates/network" }
+workos-plugin-runtime = { path = "crates/plugin-runtime" }
+workos-manual = { path = "crates/manual" }
+workos-native = { path = "crates/native" }
+
+tauri = { version = "2", features = ["devtools", "unstable"] }
+tauri-plugin-global-shortcut = "2"
+tauri-plugin-dialog = "2"
+tauri-plugin-notification = "2"
+tauri-plugin-updater = "2"
+tauri-plugin-clipboard-manager = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["full"] }
+reqwest = { version = "0.12", default-features = false, features = ["native-tls", "json", "gzip"] }
+tokio-tungstenite = { version = "0.24", features = ["native-tls"] }
+futures-util = "0.3"
+rusqlite = { version = "0.32", features = ["bundled", "functions"] }
+security-framework = "2"
+sha2 = "0.10"
+zip = "2"
+hex = "0.4"
+thiserror = "2"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+once_cell = "1"
+parking_lot = "0.12"

@@ -1,4 +1,5 @@
 node_modules
+target
 out
 dist
 release
@@ -8,11 +9,14 @@ release
 .env.*
 !.env.example
 vite.config.ts.timestamp*
-# TypeScript incremental build cache
 *.tsbuildinfo
-# marketplace/ is a build output (zips + registry.json) — regenerate with: pnpm build:marketplace
+
+# 插件打包产物（由 scripts/pack-plugins.mjs 重新生成）
+apps/desktop/src-tauri/plugins/*
+apps/desktop/src-tauri/gen/
+
+# 旧 Electron 构建输出
 marketplace
-# smoke-test scratch dirs
 .sfeed
 .smoke-update-feed
 .smoke-marketplace-tmp

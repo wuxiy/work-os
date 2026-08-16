@@ -1,7 +1,18 @@
 {
   "files": [],
   "references": [
-    { "path": "./tsconfig.node.json" },
-    { "path": "./tsconfig.web.json" }
+    { "path": "./packages/shared" },
+    { "path": "./packages/plugin-types" },
+    { "path": "./packages/command" },
+    { "path": "./packages/plugin-sdk" },
+    { "path": "./packages/ui" },
+    { "path": "./packages/manual-kit" },
+    { "path": "./apps/desktop" },
+    { "path": "./plugins/json-tools" },
+    { "path": "./plugins/api-client" },
+    { "path": "./plugins/websocket" },
+    { "path": "./plugins/crypto-tools" },
+    { "path": "./plugins/developer-essentials" },
+    { "path": "./tools/workos-cli" }
   ]
 }
