@@ -138,7 +138,12 @@ export function LauncherApp() {
   return (
     <div className="flex h-full flex-col overflow-hidden bg-app-bg shadow-2xl" onMouseDown={() => inputRef.current?.focus()}>
       <div className="flex h-14 shrink-0 items-center gap-3 border-b border-app-border px-4">
-        <span className="flex h-6 w-6 items-center justify-center rounded-[6px] bg-app-accent text-[11px] font-bold text-app-accent-fg">W</span>
+        <span
+          className="flex h-6 w-6 items-center justify-center rounded-[6px] text-[11px] font-bold text-white"
+          style={{ background: 'linear-gradient(180deg, #4A7DFF 0%, #6D5DF6 100%)' }}
+        >
+          W
+        </span>
         <input
           ref={inputRef}
           value={query}

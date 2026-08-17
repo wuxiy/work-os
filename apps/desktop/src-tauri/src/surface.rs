@@ -45,6 +45,8 @@ pub fn open(app: &AppHandle<Wry>, plugin_id: &str, rect: &SurfaceRect, enter: Op
     let existing = app.get_webview(&label);
     let webview = match existing {
         Some(wv) => {
+            // 复用前确保可见（此前被隐藏的情况）
+            let _ = wv.show();
             position(&wv, rect, scale);
             wv
         }
@@ -114,12 +116,15 @@ pub fn mark_ready(app: &AppHandle<Wry>, plugin_id: &str) {
 }
 
 pub fn hide(app: &AppHandle<Wry>, plugin_id: &str) {
-    if let Some(wv) = app.get_webview(&plugin_label(plugin_id)) {
-        let _ = wv.hide();
-        let st = workos_core::global();
-        let _ = app.emit_to(plugin_label(plugin_id), "workos://out", ());
-        st.plugin_ready.lock().remove(&plugin_label(plugin_id));
+    let label = plugin_label(plugin_id);
+    if let Some(wv) = app.get_webview(&label) {
+        let _ = app.emit_to(&label, "workos://out", ());
+        // 复用已 hide 的子 WebView 在 macOS 上会出现不可交互（WKWebView 状态残留），
+        // 退出工具页时直接销毁，下次进入全新创建（plugin_open 重新计时）
+        let _ = wv.close();
+        tracing::info!("插件 Surface 已关闭：{label}");
     }
+    workos_core::global().plugin_ready.lock().remove(&label);
 }
 
 /// 主题变化广播到所有插件 WebView

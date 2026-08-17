@@ -19,7 +19,12 @@ export function Layout({ children }: { children: ReactNode }) {
     <div className="flex h-full w-full overflow-hidden">
       <aside className="flex w-48 shrink-0 flex-col border-r border-app-border bg-app-panel">
         <div className="flex h-10 items-center gap-2 px-3">
-          <span className="flex h-5 w-5 items-center justify-center rounded-[5px] bg-app-accent text-[10px] font-bold text-app-accent-fg">W</span>
+          <span
+            className="flex h-5 w-5 items-center justify-center rounded-[5px] text-[10px] font-bold text-white"
+            style={{ background: 'linear-gradient(180deg, #4A7DFF 0%, #6D5DF6 100%)' }}
+          >
+            W
+          </span>
           <span className="text-[13px] font-semibold">Work-OS</span>
         </div>
         <nav className="flex-1 space-y-0.5 p-2">

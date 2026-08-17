@@ -24,6 +24,15 @@ pub fn run() {
         .init();
 
     tauri::Builder::default()
+        // 单实例保护：二次启动聚焦既有窗口（避免双进程共写 SQLite）
+        .plugin(tauri_plugin_single_instance::init(|app, _args, _cwd| {
+            use tauri::Manager;
+            if let Some(w) = app.get_webview_window("workbench") {
+                let _ = w.show();
+                let _ = w.unminimize();
+                let _ = w.set_focus();
+            }
+        }))
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_notification::init())
         .plugin(tauri_plugin_clipboard_manager::init())
@@ -138,6 +147,7 @@ pub fn run() {
                 let v_plugins = MenuItemBuilder::with_id("verify.nav-plugins", "导航：插件页").build(app)?;
                 let v_settings = MenuItemBuilder::with_id("verify.nav-settings", "导航：设置").build(app)?;
                 let v_theme = MenuItemBuilder::with_id("verify.theme-toggle", "切换主题").build(app)?;
+                let v_mtree = MenuItemBuilder::with_id("verify.manual-tree", "手册：打开 systemctl 并点击树命令").build(app)?;
                 let v_updater = MenuItemBuilder::with_id("verify.updater-check", "检查更新（本地源）").build(app)?;
                 let main_menu = MenuBuilder::new(app)
                     .items(&[
@@ -170,6 +180,7 @@ pub fn run() {
                             .item(&v_plugins)
                             .item(&v_settings)
                             .separator()
+                            .item(&v_mtree)
                             .item(&v_theme)
                             .item(&v_updater)
                             .build()?,
@@ -249,6 +260,9 @@ fn verify_menu_action(app: &tauri::AppHandle<tauri::Wry>, id: &str) {
                 let route = id_owned.trim_start_matches("verify.nav-");
                 let route = if route == "home" { "/home".to_string() } else { format!("/{route}") };
                 eval_to("workbench", &format!(";window.__TAURI_INTERNALS__.invoke('navigate_workbench', {{ route: '{}' }}).catch(e=>console.error(e));", route));
+            }
+            "verify.manual-tree" => {
+                eval_to("workbench", ";window.__TAURI_INTERNALS__.invoke('navigate_workbench',{route:'/manuals/dev.workos.manual.linux/systemctl'}).then(()=>setTimeout(()=>{ const btns=[...document.querySelectorAll('aside button')].filter(b=>/^\\w+$/.test(b.textContent?.trim()||'')&&b.textContent.trim()!=='systemctl'); if(btns.length>=3){ btns[0].click(); setTimeout(()=>btns[1].click(),120); setTimeout(()=>btns[2].click(),240); } else if(btns.length){ btns[0].click(); } else { window.__TAURI_INTERNALS__.invoke('debug_log',{msg:'manual-tree: 未找到树命令按钮'}); } },1200));");
             }
             "verify.theme-toggle" => {
                 eval_to("workbench", ";window.__TAURI_INTERNALS__.invoke('theme_get').then(async t=>{ await window.__TAURI_INTERNALS__.invoke('theme_set',{mode: t.resolved==='dark'?'light':'dark'}); const t2=await window.__TAURI_INTERNALS__.invoke('theme_get'); window.__TAURI_INTERNALS__.invoke('debug_log',{msg:'theme now: '+t2.mode+'/'+t2.resolved}); }).catch(e=>window.__TAURI_INTERNALS__.invoke('debug_log',{msg:'theme ERR: '+e}));");
